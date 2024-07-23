@@ -1,7 +1,7 @@
-import ToDo from "todo.js";
-import Project from "project.js"
+import {ToDo} from "./todo.js";
+import {Project} from "./project.js"
 
-class Manager{
+export class Manager{
     constructor(){
         this.projects = [];
     }
@@ -22,10 +22,28 @@ class Manager{
         this.projects.push(project);
     }
 
+    createToDoItem(title, desc, dueDate, prio, project){
+        if(!project) return;
+        let item = new ToDo(title, desc, dueDate, prio);
+        project.addToDoItem(item);
+    }
 
-    addToProjectList(project, toDo){
-        if(project){
-            project.addToDoItem(toDo);
-        }
+    updateToDoItemPrio(toDoItem){
+        toDoItem.updatePriority(newPrio);
+    }
+
+
+    // addToProjectList(project, toDo){
+    //     if(project){
+    //         project.addToDoItem(toDo);
+    //     }
+    // }
+
+    getAllProjects(){
+        return this.projects;
+    }
+
+    getProject(title){
+        return this.projects.find(project => project.title === title);
     }
 }
