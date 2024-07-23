@@ -5,4 +5,8 @@ export class ToDo{
         this.dueDate = dueDate;
         this.prio = prio;
     }
+
+    updatePriority(newPrio){
+        this.prio = newPrio;
+    }
 }
