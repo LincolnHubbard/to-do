@@ -19,17 +19,24 @@
           </header>
     <div class="content">
         <div class="sidebar">
-            <ul>
+            <ul id="project-list">
                 <h2>Projects</h2>
                 <li>Default</li>
-                <li>New Project +</li>
             </ul>
-        </br>
-            <p>New Task+</p>
+            <button>New Project</button>
         </div>
         <div class="main">
             <h1>Project Name</h1>
-            <p>New Task</p>
+            <ul id="task-list">
+                <li class="task">
+                    <p id="task-title">Example task</p>
+                    <div>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                </li>
+            </ul>
+            <button>New Task</button>
         </div>
     </div>
 </body>
