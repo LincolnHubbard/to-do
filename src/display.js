@@ -1,5 +1,5 @@
 import { Manager } from "./manager";
-import { PopUpWindow } from "./PopUpWindow";
+import { PopUpWindow } from "./popup";
 
 export class DisplayController{
 
@@ -26,7 +26,7 @@ export class DisplayController{
         if(this.newTaskButton){
             console.log("New task button found");
             this.newTaskButton.addEventListener('click', () =>{
-                this.createTaskWindow();
+                this.createNewTaskWindow();
             })
         }
 
@@ -52,8 +52,20 @@ export class DisplayController{
         });
     }
 
-    createTaskWindow(){
+    createNewTaskWindow(){
         console.log("Creating new task");
+        new PopUpWindow({
+            title: 'New Task',
+            fields: [
+                {name: 'title', label: 'Title', type: 'text'},
+                {name: 'desc', label: 'Description', type: 'text'},
+                {name: 'date', label: 'Due Date', type: 'date'},
+                {name: 'prio', label: 'Important?', type: 'checkbox'},
+            ],
+            onSubmit: () =>{
+                console.log("Submitting Task Info");
+            }
+        })
     }
 
 
