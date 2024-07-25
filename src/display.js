@@ -74,17 +74,19 @@ export class DisplayController{
         titleInput.setAttribute('id', 'title');
         formListItem.appendChild(titleLabel);
         formListItem.appendChild(titleInput);
+        let submitButton = document.createElement('button');
+        submitButton.textContent = "Submit";
 
         formList.appendChild(formListItem);
         newProjectForm.append(formList);
         newProjectWindow.appendChild(newProjectForm);
+        newProjectWindow.appendChild(submitButton);
         pageBody.appendChild(newProjectWindow);
     }
 
     createTaskWindow(){
         console.log("Creating new task");
     }
-
 
 
 }
