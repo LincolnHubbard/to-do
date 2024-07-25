@@ -20,6 +20,10 @@ button{
     border: none;
 }
 
+.blur{
+    filter: blur(2px);
+}
+
 header{
     background-color: #115e59;
     color: white;
@@ -69,7 +73,6 @@ header{
     gap: 25px;
     padding-left: 2rem;
     padding-top: 1rem;
-    filter: blur(2px);
 }
 
 .main button{
@@ -153,7 +156,7 @@ header{
     flex-direction: column;
     padding: 2rem;
     gap: 10px;
-    display: none;
+    /* display: none; */
 }
 
 #project-edit-window{
@@ -169,4 +172,5 @@ header{
     flex-direction: column;
     padding: 2rem;
     gap: 10px;
+    display: none;
 }

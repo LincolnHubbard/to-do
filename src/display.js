@@ -18,7 +18,7 @@ export class DisplayController{
         if(this.newProjectButton){
             console.log("New project button found");
             this.newProjectButton.addEventListener('click', () =>{
-                this.createProjectWindow();
+                this.createNewProjectWindow();
             })
         }
 
@@ -38,8 +38,47 @@ export class DisplayController{
         }
     }
     
-    createProjectWindow(){
+    createNewProjectWindow(){
         console.log("Creating new project");
+        let pageBody = document.querySelector('body');
+        let mainContent = document.querySelector('.main');
+        mainContent.classList.add('blur');
+    
+        let newProjectWindow = document.createElement('div');
+        newProjectWindow.id = "project-new-window";
+
+        let projectWindowTop = document.createElement('div');
+        projectWindowTop.id = "task-edit-window-top";
+        let projectWindowHeader = document.createElement('h2');
+        projectWindowHeader.textContent = "New Project";
+        let closeButton = document.createElement('button');
+        closeButton.textContent = "X";
+        closeButton.addEventListener('click', () =>{
+            pageBody.removeChild(newProjectWindow);
+            mainContent.classList.remove('blur');
+        });
+        projectWindowTop.appendChild(projectWindowHeader);
+        projectWindowTop.appendChild(closeButton);
+        newProjectWindow.appendChild(projectWindowTop);
+
+
+        let newProjectForm = document.createElement('form');
+        let formList = document.createElement('ul');
+        let formListItem = document.createElement('li');
+        let titleLabel = document.createElement('label');
+        titleLabel.setAttribute('for', 'title');
+        titleLabel.textContent = "Title";
+        let titleInput = document.createElement('input');
+        titleInput.setAttribute('type', 'text');
+        titleInput.setAttribute('name', 'title');
+        titleInput.setAttribute('id', 'title');
+        formListItem.appendChild(titleLabel);
+        formListItem.appendChild(titleInput);
+
+        formList.appendChild(formListItem);
+        newProjectForm.append(formList);
+        newProjectWindow.appendChild(newProjectForm);
+        pageBody.appendChild(newProjectWindow);
     }
 
     createTaskWindow(){
