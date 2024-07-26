@@ -37,13 +37,13 @@ export class Manager{
     }
 
 
-    addToProjectList(project, toDo){
-        if(project){
-            if(toDo instanceof ToDo){
-                project.addToDoItem(toDo);
-            }
-        }
-    }
+    // addToProjectList(project, toDo){
+    //     if(project){
+    //         if(toDo instanceof ToDo){
+    //             project.addToDoItem(toDo);
+    //         }
+    //     }
+    // }
 
     removeTaskFromProject(project, taskTitle){
         if (project){
