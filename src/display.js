@@ -35,11 +35,12 @@ export class DisplayController{
 
         if(this.projectList){
             console.log("Project list found");
-            this.manager.createProject('Default');
-            let projectBuffer = this.manager.getProject("Default");
-            let taskBuffer = {title: 'test', desc: 'test', dueDate: 'test', prio: false};
-            this.manager.createToDoItem(taskBuffer, projectBuffer);
-            this.activeProject = projectBuffer;
+            this.manager.loadProjectsFromLocalStorage();
+            // this.manager.createProject('Default');
+            // let projectBuffer = this.manager.getProject("Default");
+            // let taskBuffer = {title: 'test', desc: 'test', dueDate: 'test', prio: false};
+            // this.manager.createToDoItem(taskBuffer, projectBuffer);
+            this.activeProject = this.manager.getAllProjects()[0];
             this.renderProjects();
             this.renderTasks(this.activeProject);
             console.log(this.activeProject);
@@ -152,6 +153,7 @@ export class DisplayController{
             listContainer.appendChild(this.createProjectListItem(project));
         });
         console.log(projectList);
+        this.manager.saveProjectsToLocalStorage();
     }
 
     renderTasks(activeProject){

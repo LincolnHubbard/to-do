@@ -70,4 +70,30 @@ export class Manager{
             }
         }
     }
+
+    saveProjectsToLocalStorage(){
+        try {
+            const projectsJSON = JSON.stringify(this.projects);
+            localStorage.setItem("projects", projectsJSON);
+            console.log("Projects saved to local storage");
+        } catch (error) {
+            console.log('Local storage not available on this device');
+        }
+    }
+
+    loadProjectsFromLocalStorage(){
+        try {
+            const projectsJSON = localStorage.getItem("projects");
+            if(projectsJSON){
+                this.projects = JSON.parse(projectsJSON);
+                console.log("Projects successfully loaded from local storage");
+            }else{
+                console.log("No projects found");
+                this.createProject('Inbox');
+            }
+
+        } catch (error) {
+            console.log('Local storage not available on this device');
+        }
+    }
 }
