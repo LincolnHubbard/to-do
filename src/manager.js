@@ -20,6 +20,8 @@ export class Manager{
         }
         let project = new Project(title);
         this.projects.push(project);
+
+        return project;
     }
 
     createToDoItem(newTask, project){
@@ -85,8 +87,24 @@ export class Manager{
         try {
             const projectsJSON = localStorage.getItem("projects");
             if(projectsJSON){
-                this.projects = JSON.parse(projectsJSON);
-                console.log("Projects successfully loaded from local storage");
+                // this.projects = JSON.parse(projectsJSON);
+                // console.log("Projects successfully loaded from local storage");
+                const projectData = JSON.parse(projectsJSON);
+                projectData.forEach(project => {
+                    const loadedProject = this.createProject(project.title);
+
+                    project.toDoList.forEach(task => {
+                        let taskData = {
+                            title: task.title,
+                            desc: task.desc,
+                            dueDate: task.dueDate,
+                            prio: task.prio
+                        };
+                        this.createToDoItem(taskData, loadedProject);
+                    });
+                    
+                });
+                console.log("Project data: " +  projectData);
             }else{
                 console.log("No projects found");
                 this.createProject('Inbox');

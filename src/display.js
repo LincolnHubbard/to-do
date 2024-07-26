@@ -153,7 +153,6 @@ export class DisplayController{
             listContainer.appendChild(this.createProjectListItem(project));
         });
         console.log(projectList);
-        this.manager.saveProjectsToLocalStorage();
     }
 
     renderTasks(activeProject){
@@ -161,8 +160,10 @@ export class DisplayController{
         const header = document.getElementById('main-header');
         header.textContent = activeProject.title;
 
+        console.log("Active Project:" + activeProject.title);
         const listContainer = document.getElementById('task-list');
         listContainer.textContent = '';
+        console.log(activeProject.getAllTasks());
         let taskList = activeProject.getAllTasks();
         taskList.forEach(task => {
             listContainer.appendChild(this.createTaskListItem(task));
@@ -253,6 +254,7 @@ export class DisplayController{
     updateDisplay(){
         this.renderProjects();
         this.renderTasks(this.activeProject);
+        this.manager.saveProjectsToLocalStorage();
     }
 }
 
