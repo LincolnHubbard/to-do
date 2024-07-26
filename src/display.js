@@ -64,8 +64,10 @@ export class DisplayController{
             fields: [
                 { name: 'title', label: 'Title', type: 'text'}
             ],
-            onSubmit: () =>{
-                console.log('submitting project title');
+            onSubmit: (formData) =>{
+                console.log('submitting project title', formData.title);
+                this.manager.createProject(formData.title);
+                this.updateDisplay();
             }
         });
     }
@@ -124,6 +126,10 @@ export class DisplayController{
         })
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "Delete";
+        deleteButton.addEventListener('click', () =>{
+            this.manager.removeTaskFromProject(this.activeProject, task.getTitle());
+            this.updateDisplay();
+        })
         itemButtons.appendChild(viewButton);
         itemButtons.appendChild(editButton);
         itemButtons.appendChild(deleteButton);
@@ -137,6 +143,11 @@ export class DisplayController{
         listItem.textContent = project.getTitle();
 
         return listItem;
+    }
+
+    updateDisplay(){
+        this.renderProjects();
+        this.renderTasks(this.activeProject);
     }
 
 }

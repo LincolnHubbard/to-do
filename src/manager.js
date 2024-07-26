@@ -41,6 +41,15 @@ export class Manager{
         }
     }
 
+    removeTaskFromProject(project, taskTitle){
+        if (project){
+            const index = project.getAllTasks().findIndex( task => task.title === taskTitle)
+            if (index !== -1){
+                project.getAllTasks().splice(index, 1);
+            }
+        }
+    }
+
     getAllProjects(){
         return this.projects;
     }

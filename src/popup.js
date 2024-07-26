@@ -50,11 +50,24 @@ export class PopUpWindow {
 
         const submitButton = document.createElement('button');
         submitButton.textContent = "Submit";
+        submitButton.addEventListener('click', () => {
+            this.handleSubmit();
+        })
         this.popupWindow.appendChild(submitButton);
         const mainContent = document.querySelector('.main');
         mainContent.classList.add('blur');
 
         document.body.appendChild(this.popupWindow);
+    }
+
+    handleSubmit(){
+        const formData = {};
+        this.fields.forEach(field => {
+            const input = document.getElementById(field.name);
+            formData[field.name] = input.value;
+        });
+        this.onSubmit(formData);
+        this.closeWindow();
     }
 
 
