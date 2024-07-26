@@ -41,7 +41,7 @@ header{
 
 .content{
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 4fr;
     height: 100%;
 }
 
@@ -57,7 +57,22 @@ header{
 
 .sidebar li{
     margin: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
 }
+
+.sidebar li button{
+    background-color:#f7f7f7;
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar li:hover{
+    color:#115e59;
+}
+
 
 .sidebar button{
     border: none;
@@ -159,4 +174,28 @@ header{
 
 .delete{
  background-image: url("./icons/delete.svg");
+}
+
+.close{
+    background-image: url("./icons/close.svg");
+    width: 24px;
+    height: 24px;
+    background-color: white;
+}
+.close:hover{
+    scale: 1.15;
+}
+
+.submit{
+    background-color: #0d9488;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 50px;
+    height: 24px;
+    align-self: center;
+}
+
+button:hover{
+    scale: 1.10;
 }
