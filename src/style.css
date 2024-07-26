@@ -55,6 +55,10 @@ header{
   font-size: 1.2rem;
 }
 
+.sidebar li{
+    margin: 10px;
+}
+
 .sidebar button{
     border: none;
     background-color: #0d9488;
@@ -128,4 +132,9 @@ header{
 
 .hidden{
     display: none;
+}
+
+.active-project{
+    color: #115e59;
+    scale: 1.2;
 }

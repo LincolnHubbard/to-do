@@ -39,8 +39,8 @@ export class DisplayController{
             let projectBuffer = this.manager.getProject("Default");
             let taskBuffer = {title: 'test', desc: 'test', dueDate: 'test', prio: false};
             this.manager.createToDoItem(taskBuffer, projectBuffer);
-            this.renderProjects();
             this.activeProject = projectBuffer;
+            this.renderProjects();
             this.renderTasks(this.activeProject);
             console.log(this.activeProject);
         }
@@ -108,13 +108,19 @@ export class DisplayController{
             },
             onSubmit: (formData) =>{
                 console.log("Submitting Task Info");
-                let taskData = {
-                    title: formData.title,
-                    desc: formData.desc,
-                    dueDate: formData.date,
-                    prio: formData.prio
-                };
-                this.manager.createToDoItem(taskData, this.activeProject);
+                let newTask = new ToDo(
+                    formData.title,
+                    formData.desc,
+                    formData.date,
+                    formData.prio
+                );
+
+                if(task){
+                    const index = this.activeProject.getAllTasks().indexOf(task);
+                    if (index !== -1) {
+                        this.activeProject.getAllTasks().splice(index, 1, newTask);
+                    }
+                }
                 this.updateDisplay();
             }
         })
@@ -133,6 +139,9 @@ export class DisplayController{
 
     renderTasks(activeProject){
         if(activeProject === null) return;
+        const header = document.getElementById('main-header');
+        header.textContent = activeProject.title;
+
         const listContainer = document.getElementById('task-list');
         listContainer.textContent = '';
         let taskList = activeProject.getAllTasks();
@@ -174,6 +183,15 @@ export class DisplayController{
     createProjectListItem(project){
         const listItem = document.createElement('li');
         listItem.textContent = project.getTitle();
+        if(project === this.activeProject){
+            listItem.classList.add("active-project");
+        }else{
+            listItem.className = '';
+        }
+        listItem.addEventListener('click', () =>{
+            this.activeProject = project;
+            this.updateDisplay();
+        })
 
         return listItem;
     }
@@ -182,6 +200,5 @@ export class DisplayController{
         this.renderProjects();
         this.renderTasks(this.activeProject);
     }
-
 }
 
