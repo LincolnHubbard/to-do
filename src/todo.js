@@ -9,4 +9,8 @@ export class ToDo{
     updatePriority(newPrio){
         this.prio = newPrio;
     }
+
+    getTitle(){
+        return this.title;
+    }
 }

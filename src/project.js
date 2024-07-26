@@ -8,4 +8,8 @@ export class Project{
         if (this.toDoList.includes(item)) return;
         this.toDoList.push(item);
     }
+
+    getAllTasks(){
+        return this.toDoList;
+    }
 }

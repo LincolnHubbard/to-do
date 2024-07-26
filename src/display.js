@@ -1,5 +1,6 @@
 import { Manager } from "./manager";
 import { PopUpWindow } from "./popup";
+import { ToDo } from "./todo";
 
 export class DisplayController{
 
@@ -11,6 +12,7 @@ export class DisplayController{
         this.newTaskButton = document.querySelector('#newTaskButton');
         this.projectList = document.querySelector('#project-list');
         this.taskList = document.querySelector('#task-list');
+        this.activeProject = null;
 
         this.initializeDisplay();
     }
@@ -32,10 +34,12 @@ export class DisplayController{
 
         if(this.projectList){
             console.log("Project list found");
+            this.renderProjects();
         }
 
         if(this.taskList){
             console.log("Task list found");
+            this.renderTasks();
         }
     }
     
@@ -68,6 +72,43 @@ export class DisplayController{
         })
     }
 
+    renderProjects(){
+        let projectList = this.manager.getAllProjects();
+        console.log(projectList);
+    }
+
+    renderTasks(activeProject){
+        if(activeProject === null) return;
+        const listContainer = document.getElementById('task-list');
+        listContainer.textContent = '';
+        let taskList = activeProject.getAllTasks();
+        taskList.forEach(task => {
+            listContainer.appendChild(this.createTaskListItem());
+        });
+    }
+
+    createTaskListItem(task){
+        const listItem = document.createElement('li');
+        listItem.className = "task";
+        const taskTitle = document.createElement('p');
+        taskTitle.id = "task-title";
+        taskTitle.textContent = task.getTitle();
+        listItem.appendChild(taskTitle);
+
+        const itemButtons = document.createElement('div');
+        const viewButton = document.createElement('button');
+        viewButton.textContent = "View";
+        const editButton = document.createElement('button');
+        editButton.textContent = "Edit";
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = "Delete";
+        itemButtons.appendChild(viewButton);
+        itemButtons.appendChild(editButton);
+        itemButtons.appendChild(deleteButton);
+        listItem.appendChild(itemButtons);
+                
+        return listItem;
+    }
 
 }
 
