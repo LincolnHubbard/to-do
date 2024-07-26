@@ -224,19 +224,22 @@ export class DisplayController{
 
         const buttons = document.createElement('div');
 
-        const editButton = document.createElement('button');
-        editButton.classList.add('edit');
-        buttons.appendChild(editButton);
-        editButton.addEventListener('click', () =>{
-            this.createEditProjectWindow(project);
-        })
+        if (project.title !== 'Inbox'){
+            const editButton = document.createElement('button');
+            editButton.classList.add('edit');
+            buttons.appendChild(editButton);
+            editButton.addEventListener('click', () =>{
+                this.createEditProjectWindow(project);
+            })
+        }
+
     
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete');
         deleteButton.addEventListener('click', () => {
-            if (project.title === 'Default')
+            if (project.title === 'Inbox')
                 {
-                    alert("'Default' Project cannot be deleted!");
+                    alert("The Inbox cannot be deleted!");
                     return;
                 } 
             const confirmation = window.confirm(`Are you sure you want to delete the project "${project.title}"? This will also delete all associated tasks!`);
