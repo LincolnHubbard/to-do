@@ -99,15 +99,25 @@ header{
 .main .task{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width:50%;
     border-bottom: 1px solid #3f3f3f1e;
-    padding-bottom: 10px;;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 
 .main .task button{
-    background-color: grey;
+    background-color: white;
     font-size: 1rem;
     justify-self: flex-end;
+    align-self: center;
+    width: 24px;
+    height: 24px;
+    padding-bottom: 0px;
+}
+
+.main .task button:hover{
+    scale: 1.15;
 }
 
 .popup-window{
@@ -137,4 +147,16 @@ header{
 .active-project{
     color: #115e59;
     scale: 1.2;
+}
+
+.view{
+    background-image: url("./icons/view.svg");
+}
+
+.edit{
+  background-image: url("./icons/edit.svg");
+}
+
+.delete{
+ background-image: url("./icons/delete.svg");
 }

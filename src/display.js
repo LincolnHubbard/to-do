@@ -160,14 +160,15 @@ export class DisplayController{
 
         const itemButtons = document.createElement('div');
         const viewButton = document.createElement('button');
-        viewButton.textContent = "View";
+        // viewButton.textContent = "View";
+        viewButton.classList.add('view');
         const editButton = document.createElement('button');
-        editButton.textContent = "Edit";
+        editButton.classList.add('edit');
         editButton.addEventListener('click', () =>{
             this.createEditTaskWindow(task);
         })
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = "Delete";
+        deleteButton.classList.add('delete');
         deleteButton.addEventListener('click', () =>{
             this.manager.removeTaskFromProject(this.activeProject, task.getTitle());
             this.updateDisplay();
