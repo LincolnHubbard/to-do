@@ -22,9 +22,13 @@ export class Manager{
         this.projects.push(project);
     }
 
-    createToDoItem(title, desc, dueDate, prio, project){
+    createToDoItem(newTask, project){
         if(!project) return;
-        let item = new ToDo(title, desc, dueDate, prio);
+        let item = new ToDo(
+             newTask.title,
+             newTask.desc,
+             newTask.dueDate, 
+             newTask.prio);
         project.addToDoItem(item);
     }
 

@@ -37,14 +37,8 @@ export class DisplayController{
             console.log("Project list found");
             this.manager.createProject('Default');
             let projectBuffer = this.manager.getProject("Default");
-            let taskBuffer = this.manager.createToDoItem('Test', 
-                'test', 'test', false, projectBuffer
-            );
-            this.manager.addToProjectList(projectBuffer, taskBuffer);
-            taskBuffer = this.manager.createToDoItem('Test2', 
-                'test2', 'test2', false, projectBuffer
-            );
-            this.manager.addToProjectList(projectBuffer, taskBuffer);
+            let taskBuffer = {title: 'test', desc: 'test', dueDate: 'test', prio: false};
+            this.manager.createToDoItem(taskBuffer, projectBuffer);
             this.renderProjects();
             this.activeProject = projectBuffer;
             this.renderTasks(this.activeProject);
@@ -82,8 +76,16 @@ export class DisplayController{
                 {name: 'date', label: 'Due Date', type: 'date'},
                 {name: 'prio', label: 'Important?', type: 'checkbox'},
             ],
-            onSubmit: () =>{
+            onSubmit: (formData) =>{
                 console.log("Submitting Task Info");
+                let taskData = {
+                    title: formData.title,
+                    desc: formData.desc,
+                    dueDate: formData.date,
+                    prio: formData.prio
+                };
+                this.manager.createToDoItem(taskData, this.activeProject);
+                this.updateDisplay();
             }
         })
     }
