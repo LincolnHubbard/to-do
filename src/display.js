@@ -106,8 +106,16 @@ export class DisplayController{
                 date: task.dueDate,
                 prio: task.prio
             },
-            onSubmit: () =>{
+            onSubmit: (formData) =>{
                 console.log("Submitting Task Info");
+                let taskData = {
+                    title: formData.title,
+                    desc: formData.desc,
+                    dueDate: formData.date,
+                    prio: formData.prio
+                };
+                this.manager.createToDoItem(taskData, this.activeProject);
+                this.updateDisplay();
             }
         })
 
