@@ -35,7 +35,9 @@ export class Manager{
 
     addToProjectList(project, toDo){
         if(project){
-            project.addToDoItem(toDo);
+            if(toDo instanceof ToDo){
+                project.addToDoItem(toDo);
+            }
         }
     }
 

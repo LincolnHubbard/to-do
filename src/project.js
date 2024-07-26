@@ -7,6 +7,7 @@ export class Project{
     addToDoItem(item){
         if (this.toDoList.includes(item)) return;
         this.toDoList.push(item);
+
     }
 
     getAllTasks(){

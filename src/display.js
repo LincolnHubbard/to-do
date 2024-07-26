@@ -41,6 +41,10 @@ export class DisplayController{
                 'test', 'test', false, projectBuffer
             );
             this.manager.addToProjectList(projectBuffer, taskBuffer);
+            taskBuffer = this.manager.createToDoItem('Test2', 
+                'test2', 'test2', false, projectBuffer
+            );
+            this.manager.addToProjectList(projectBuffer, taskBuffer);
             this.renderProjects();
             this.activeProject = projectBuffer;
             this.renderTasks(this.activeProject);
