@@ -42,7 +42,11 @@ export class PopUpWindow {
             input.setAttribute('type', field.type || 'text');
             input.setAttribute('name', field.name);
             input.setAttribute('id', field.name);
-            input.value = this.values[field.name] || '';
+            if(field.type === 'checkbox'){
+                input.checked = this.values[field.name] || false;
+            }else{
+                input.value = this.values[field.name] || '';
+            }
             listItem.appendChild(label);
             listItem.appendChild(input);
             formList.appendChild(listItem);
@@ -66,7 +70,11 @@ export class PopUpWindow {
         const formData = {};
         this.fields.forEach(field => {
             const input = document.getElementById(field.name);
-            formData[field.name] = input.value;
+            if (field.type === 'checkbox'){
+                formData[field.name] = input.checked;
+            }else{
+                formData[field.name] = input.value;
+            }
         });
         this.onSubmit(formData);
         this.closeWindow();
