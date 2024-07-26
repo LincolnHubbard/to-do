@@ -61,4 +61,13 @@ export class Manager{
     getProject(title){
         return this.projects.find(project => project.title === title);
     }
+
+    removeProject(projectToRemove){
+        if (projectToRemove){
+            const index = this.getAllProjects().findIndex(project => project.title === projectToRemove.title);
+            if (index !== -1){
+                this.getAllProjects().splice(index, 1);
+            }
+        }
+    }
 }

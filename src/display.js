@@ -183,17 +183,39 @@ export class DisplayController{
 
     createProjectListItem(project){
         const listItem = document.createElement('li');
-        listItem.textContent = project.getTitle();
+        const projectName = document.createElement('p');
+        projectName.textContent = project.getTitle();
         if(project === this.activeProject){
             listItem.classList.add("active-project");
         }else{
             listItem.className = '';
         }
-        listItem.addEventListener('click', () =>{
+        projectName.addEventListener('click', () =>{
             this.activeProject = project;
             this.updateDisplay();
-        })
+        });
 
+        listItem.appendChild(projectName);
+
+        const buttons = document.createElement('div');
+
+        const editButton = document.createElement('button');
+        editButton.classList.add('edit');
+        buttons.appendChild(editButton);
+    
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete');
+        deleteButton.addEventListener('click', () => {
+            if (project.title === 'Default') return;
+            const confirmation = window.confirm(`Are you sure you want to delete the project "${project.title}"? This will also delete all associated tasks!`);
+            if(confirmation){
+                this.manager.removeProject(project);
+                this.updateDisplay();
+            }
+        });
+        buttons.appendChild(deleteButton);
+
+        listItem.appendChild(buttons);
         return listItem;
     }
 
