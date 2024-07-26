@@ -106,7 +106,7 @@ export class DisplayController{
         const listItem = document.createElement('li');
         listItem.className = "task";
         const taskTitle = document.createElement('p');
-        taskTitle.id = "task-title";
+        taskTitle.className = "task-title";
         taskTitle.textContent = task.getTitle();
         listItem.appendChild(taskTitle);
 
@@ -115,6 +115,9 @@ export class DisplayController{
         viewButton.textContent = "View";
         const editButton = document.createElement('button');
         editButton.textContent = "Edit";
+        editButton.addEventListener('click', () =>{
+            this.createNewTaskWindow();
+        })
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "Delete";
         itemButtons.appendChild(viewButton);
