@@ -173,6 +173,11 @@ export class DisplayController{
             this.manager.removeTaskFromProject(this.activeProject, task.getTitle());
             this.updateDisplay();
         })
+        if(task.prio === true){
+            const starIcon = document.createElement('button');
+            starIcon.classList.add('important');
+            itemButtons.appendChild(starIcon);
+        }
         itemButtons.appendChild(viewButton);
         itemButtons.appendChild(editButton);
         itemButtons.appendChild(deleteButton);

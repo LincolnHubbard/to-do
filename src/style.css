@@ -150,6 +150,16 @@ header{
     gap: 10px;
 }
 
+.popup-window li{
+    display: flex;
+    justify-content: space-between;
+    font-size: .9rem;
+}
+
+.popup-window li input{
+    max-width: 50%;
+}
+
 .popup-window-top{
     display: flex;
     justify-content: space-between;
@@ -198,4 +208,11 @@ header{
 
 button:hover{
     scale: 1.10;
+}
+
+.important{
+    background-image: url(./icons/star.svg);
+    width: 24px;
+    height: 24px;
+    border: none;
 }
