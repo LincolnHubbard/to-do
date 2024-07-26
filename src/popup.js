@@ -1,7 +1,8 @@
 export class PopUpWindow {
-    constructor({ title, fields = [], onSubmit = () => { } }) {
+    constructor({ title, fields = [], values = {}, onSubmit = () => { } }) {
         this.title = title;
         this.fields = fields;
+        this.values = values;
         this.onSubmit = onSubmit;
 
         this.createWindow();
@@ -41,6 +42,7 @@ export class PopUpWindow {
             input.setAttribute('type', field.type || 'text');
             input.setAttribute('name', field.name);
             input.setAttribute('id', field.name);
+            input.value = this.values[field.name] || '';
             listItem.appendChild(label);
             listItem.appendChild(input);
             formList.appendChild(listItem);

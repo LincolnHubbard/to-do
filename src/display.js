@@ -88,6 +88,29 @@ export class DisplayController{
         })
     }
 
+    createEditTaskWindow(task){
+        console.log("Editing Task");
+        new PopUpWindow({
+            title: 'Edit Task',
+            fields: [
+                {name: 'title', label: 'Title', type: 'text'},
+                {name: 'desc', label: 'Description', type: 'text'},
+                {name: 'date', label: 'Due Date', type: 'date'},
+                {name: 'prio', label: 'Important?', type: 'checkbox'},
+            ],
+            values: {
+                title: task.title,
+                desc: task.desc,
+                date: task.dueDate,
+                prio: task.prio
+            },
+            onSubmit: () =>{
+                console.log("Submitting Task Info");
+            }
+        })
+
+    }
+
     renderProjects(){
         let projectList = this.manager.getAllProjects();
         const listContainer = document.getElementById('project-list');
@@ -122,7 +145,7 @@ export class DisplayController{
         const editButton = document.createElement('button');
         editButton.textContent = "Edit";
         editButton.addEventListener('click', () =>{
-            this.createNewTaskWindow();
+            this.createEditTaskWindow(task);
         })
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "Delete";
