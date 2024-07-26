@@ -19,7 +19,7 @@ export class PopUpWindow {
         windowHeader.textContent = this.title;
 
         const closeButton = document.createElement('button');
-        closeButton.textContent = "X";
+        closeButton.classList.add('close');
         closeButton.addEventListener('click', () => {
             this.closeWindow();
         });
@@ -56,6 +56,7 @@ export class PopUpWindow {
 
         const submitButton = document.createElement('button');
         submitButton.textContent = "Submit";
+        submitButton.classList.add('submit');
         submitButton.addEventListener('click', () => {
             this.handleSubmit();
         })
