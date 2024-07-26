@@ -66,6 +66,23 @@ export class DisplayController{
         });
     }
 
+    createEditProjectWindow(project){
+        new PopUpWindow({
+            title: 'Rename Project',
+            fields: [
+                { name: 'title', label: 'Title', type: 'text'}
+            ],
+            values:{
+                title: project.title,
+            },
+            onSubmit: (formData) =>{
+                console.log('submitting project title', formData.title);
+                project.setTitle(formData.title);
+                this.updateDisplay();
+            }
+        });
+    }
+
     createNewTaskWindow(){
         console.log("Creating new task");
         new PopUpWindow({
@@ -207,11 +224,18 @@ export class DisplayController{
         const editButton = document.createElement('button');
         editButton.classList.add('edit');
         buttons.appendChild(editButton);
+        editButton.addEventListener('click', () =>{
+            this.createEditProjectWindow(project);
+        })
     
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete');
         deleteButton.addEventListener('click', () => {
-            if (project.title === 'Default') return;
+            if (project.title === 'Default')
+                {
+                    alert("'Default' Project cannot be deleted!");
+                    return;
+                } 
             const confirmation = window.confirm(`Are you sure you want to delete the project "${project.title}"? This will also delete all associated tasks!`);
             if(confirmation){
                 this.manager.removeProject(project);

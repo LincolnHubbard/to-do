@@ -17,4 +17,8 @@ export class Project{
     getTitle(){
         return this.title;
     }
+
+    setTitle(newTitle){
+        this.title = newTitle;
+    }
 }
