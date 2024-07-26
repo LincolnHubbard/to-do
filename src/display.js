@@ -1,6 +1,7 @@
 import { Manager } from "./manager";
 import { PopUpWindow } from "./popup";
 import { ToDo } from "./todo";
+import { Project } from "./project";
 
 export class DisplayController{
 
@@ -83,6 +84,11 @@ export class DisplayController{
 
     renderProjects(){
         let projectList = this.manager.getAllProjects();
+        const listContainer = document.getElementById('project-list');
+        listContainer.textContent = '';
+        projectList.forEach(project => {
+            listContainer.appendChild(this.createProjectListItem(project));
+        });
         console.log(projectList);
     }
 
@@ -116,6 +122,13 @@ export class DisplayController{
         itemButtons.appendChild(deleteButton);
         listItem.appendChild(itemButtons);
                 
+        return listItem;
+    }
+
+    createProjectListItem(project){
+        const listItem = document.createElement('li');
+        listItem.textContent = project.getTitle();
+
         return listItem;
     }
 

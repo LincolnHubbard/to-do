@@ -12,4 +12,8 @@ export class Project{
     getAllTasks(){
         return this.toDoList;
     }
+
+    getTitle(){
+        return this.title;
+    }
 }
