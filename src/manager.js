@@ -33,11 +33,11 @@ export class Manager{
     }
 
 
-    // addToProjectList(project, toDo){
-    //     if(project){
-    //         project.addToDoItem(toDo);
-    //     }
-    // }
+    addToProjectList(project, toDo){
+        if(project){
+            project.addToDoItem(toDo);
+        }
+    }
 
     getAllProjects(){
         return this.projects;
