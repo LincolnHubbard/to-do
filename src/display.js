@@ -172,19 +172,31 @@ export class DisplayController{
 
     createTaskListItem(task){
         const listItem = document.createElement('li');
+        const taskLeftDiv = document.createElement('div');
         listItem.className = "task";
         const taskTitle = document.createElement('p');
         taskTitle.className = "task-title";
         taskTitle.textContent = task.getTitle();
-        listItem.appendChild(taskTitle);
+        taskLeftDiv.appendChild(taskTitle);
 
+        const taskDesc = document.createElement('p');
+        taskDesc.classList.add('description');
+        taskDesc.textContent = task.desc;
+        taskLeftDiv.appendChild(taskDesc);
+        
+        listItem.appendChild(taskLeftDiv);
         const itemButtons = document.createElement('div');
-        const viewButton = document.createElement('button');
-        // viewButton.textContent = "View";
-        viewButton.classList.add('view');
-        viewButton.addEventListener('click', () =>{
-            this.createTaskDetailWindow(task);
-        })
+        // const viewButton = document.createElement('button');
+        // // viewButton.textContent = "View";
+        // viewButton.classList.add('view');
+        // viewButton.addEventListener('click', () =>{
+        //     this.createTaskDetailWindow(task);
+        // })
+
+        const taskDate = document.createElement('p');
+        taskDate.textContent = task.dueDate;
+        taskDate.classList.add('description');
+        listItem.appendChild(taskDate);
 
 
         const editButton = document.createElement('button');
@@ -203,7 +215,7 @@ export class DisplayController{
             starIcon.classList.add('important');
             itemButtons.appendChild(starIcon);
         }
-        itemButtons.appendChild(viewButton);
+        // itemButtons.appendChild(viewButton);
         itemButtons.appendChild(editButton);
         itemButtons.appendChild(deleteButton);
         listItem.appendChild(itemButtons);

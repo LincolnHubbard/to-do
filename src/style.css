@@ -216,3 +216,8 @@ button:hover{
     height: 24px;
     border: none;
 }
+
+.description{
+    font-size: .9rem;
+    color: gray;
+}
