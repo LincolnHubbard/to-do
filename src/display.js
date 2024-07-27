@@ -1,6 +1,6 @@
 import { Manager } from "./manager";
 import { PopUpWindow } from "./popup";
-import { ToDo } from "./todo";
+import { Task } from "./task";
 import { Project } from "./project";
 
 export class DisplayController{
@@ -102,7 +102,7 @@ export class DisplayController{
                     dueDate: formData.date,
                     prio: formData.prio
                 };
-                this.manager.createToDoItem(taskData, this.activeProject);
+                this.manager.createTask(taskData, this.activeProject);
                 this.updateDisplay();
             }
         })
@@ -126,7 +126,7 @@ export class DisplayController{
             },
             onSubmit: (formData) =>{
                 console.log("Submitting Task Info");
-                let newTask = new ToDo(
+                let newTask = new Task(
                     formData.title,
                     formData.desc,
                     formData.date,

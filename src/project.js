@@ -1,17 +1,17 @@
 export class Project{
     constructor(title){
         this.title = title;
-        this.toDoList = [];
+        this.taskList = [];
     }
 
-    addToDoItem(item){
-        if (this.toDoList.includes(item)) return;
-        this.toDoList.push(item);
+    addTask(item){
+        if (this.taskList.includes(item)) return;
+        this.taskList.push(item);
 
     }
 
     getAllTasks(){
-        return this.toDoList;
+        return this.taskList;
     }
 
     getTitle(){

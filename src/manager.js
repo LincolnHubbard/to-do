@@ -1,4 +1,4 @@
-import {ToDo} from "./todo.js";
+import {Task} from "./task.js";
 import {Project} from "./project.js"
 
 export class Manager{
@@ -24,19 +24,19 @@ export class Manager{
         return project;
     }
 
-    createToDoItem(newTask, project){
+    createTask(newTask, project){
         if(!project) return;
-        let item = new ToDo(
+        let item = new Task(
              newTask.title,
              newTask.desc,
              newTask.dueDate, 
              newTask.prio);
-        project.addToDoItem(item);
+        project.addTask(item);
     }
 
-    updateToDoItemPrio(toDoItem){
-        toDoItem.updatePriority(newPrio);
-    }
+    // updateToDoItemPrio(toDoItem){
+    //     toDoItem.updatePriority(newPrio);
+    // }
 
 
     // addToProjectList(project, toDo){
@@ -93,14 +93,14 @@ export class Manager{
                 projectData.forEach(project => {
                     const loadedProject = this.createProject(project.title);
 
-                    project.toDoList.forEach(task => {
+                    project.taskList.forEach(task => {
                         let taskData = {
                             title: task.title,
                             desc: task.desc,
                             dueDate: task.dueDate,
                             prio: task.prio
                         };
-                        this.createToDoItem(taskData, loadedProject);
+                        this.createTask(taskData, loadedProject);
                     });
                     
                 });
