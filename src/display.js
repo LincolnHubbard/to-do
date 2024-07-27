@@ -250,22 +250,39 @@ export class DisplayController{
             })
         }
 
+        if (project.title !== 'Inbox') {
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('delete');
+            deleteButton.addEventListener('click', () => {
+                // if (project.title === 'Inbox')
+                //     {
+                //         alert("The Inbox cannot be deleted!");
+                //         return;
+                //     } 
+                const confirmation = window.confirm(`Are you sure you want to delete the project "${project.title}"? This will also delete all associated tasks!`);
+                if(confirmation){
+                    this.manager.removeProject(project);
+                    this.updateDisplay();
+                }
+            }); 
+            buttons.appendChild(deleteButton);
+        }
     
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete');
-        deleteButton.addEventListener('click', () => {
-            if (project.title === 'Inbox')
-                {
-                    alert("The Inbox cannot be deleted!");
-                    return;
-                } 
-            const confirmation = window.confirm(`Are you sure you want to delete the project "${project.title}"? This will also delete all associated tasks!`);
-            if(confirmation){
-                this.manager.removeProject(project);
-                this.updateDisplay();
-            }
-        });
-        buttons.appendChild(deleteButton);
+        // const deleteButton = document.createElement('button');
+        // deleteButton.classList.add('delete');
+        // deleteButton.addEventListener('click', () => {
+        //     if (project.title === 'Inbox')
+        //         {
+        //             alert("The Inbox cannot be deleted!");
+        //             return;
+        //         } 
+        //     const confirmation = window.confirm(`Are you sure you want to delete the project "${project.title}"? This will also delete all associated tasks!`);
+        //     if(confirmation){
+        //         this.manager.removeProject(project);
+        //         this.updateDisplay();
+        //     }
+        // });
+        // buttons.appendChild(deleteButton);
 
         listItem.appendChild(buttons);
         return listItem;
