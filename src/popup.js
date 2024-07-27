@@ -1,11 +1,12 @@
 export class PopUpWindow {
-    constructor({ title, fields = [], values = {}, onSubmit = () => { } }) {
+    constructor({ title, fields = [], values = {}, onSubmit = () => { } }, type) {
         this.title = title;
         this.fields = fields;
         this.values = values;
         this.onSubmit = onSubmit;
 
         this.createWindow();
+
     }
 
     createWindow() {

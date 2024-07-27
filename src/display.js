@@ -182,6 +182,11 @@ export class DisplayController{
         const viewButton = document.createElement('button');
         // viewButton.textContent = "View";
         viewButton.classList.add('view');
+        viewButton.addEventListener('click', () =>{
+            this.createTaskDetailWindow(task);
+        })
+
+
         const editButton = document.createElement('button');
         editButton.classList.add('edit');
         editButton.addEventListener('click', () =>{
